@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consumo da API - SALDO</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    pre {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .button-container {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .button-container button {
+      width: 30%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Consumo da API - SALDO</h1>
+
+    <label for="empresa">Empresa:</label>
+    <input type="text" id="empresa" placeholder="Digite o código da empresa">
+    
+    <label for="produto">Produto:</label>
+    <input type="text" id="produto" placeholder="Digite o código do produto">
+    
+    <label for="cor">Cor:</label>
+    <input type="text" id="cor" placeholder="Digite a cor do produto (opcional)">
+    
+    <label for="tamanho">Tamanho:</label>
+    <input type="text" id="tamanho" placeholder="Digite o tamanho do produto (opcional)">
+    
+    <!-- Campos para EF-Token e If-None-Match -->
+    <label for="efToken">EF-Token:</label>
+    <input type="text" id="efToken" placeholder="Digite o seu EF-Token">
+    
+    <label for="ifNoneMatch">If-None-Match:</label>
+    <input type="text" id="ifNoneMatch" placeholder="Digite o valor de If-None-Match (opcional)">
+    
+    <!-- Campo para o código do lote -->
+    <label for="lote">Lote:</label>
+    <input type="text" id="lote" placeholder="Digite o código do lote">
+    
+    <!-- Botões para chamar os endpoints -->
+    <div class="button-container">
+      <button onclick="getSaldoProduto()">Consultar Saldo Produto</button>
+      <button onclick="getSaldoLote()">Consultar Saldo Lote</button>
+      <button onclick="getSaldoLotes()">Consultar Saldo Lotes</button>
+    </div>
+    
+    <h3>Resultado da Requisição</h3>
+    <pre id="result"></pre>
+  </div>
+
+  <script>
+    const host = 'http://localhost:5087/v5'; // Substitua pelo host da sua API
+
+    function handleResponse(response) {
+      // Lê o status e o body da resposta
+      return response.json().then(data => {
+        return { status: response.status, body: data };
+      });
+    }
+
+    function getSaldoProduto() {
+      const produto = document.getElementById('produto').value;
+      const empresa = document.getElementById('empresa').value || '';
+      const cor = document.getElementById('cor').value || '';
+      const tamanho = document.getElementById('tamanho').value || '';
+
+      const EFToken = document.getElementById('efToken').value;
+      const IfNoneMatch = document.getElementById('ifNoneMatch').value || '';
+
+      const url = `${host}/saldo?EMPRESA=${empresa}&PRODUTO=${produto}&COR=${cor}&TAMANHO=${tamanho}`;
+      
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'EF-Token': EFToken,
+          'If-None-Match': IfNoneMatch
+        }
+      })
+      .then(handleResponse)  // Usando a função para tratar a resposta
+      .then(({ status, body }) => {
+        document.getElementById('result').textContent = `Status Code: ${status}\n\nBody:\n${JSON.stringify(body, null, 2)}`;
+      })
+      .catch(error => {
+        document.getElementById('result').textContent = 'Erro ao consultar API: ' + error.message;
+      });
+    }
+
+    function getSaldoLote() {
+      const produto = document.getElementById('produto').value;
+      const empresa = document.getElementById('empresa').value || '';
+      const cor = document.getElementById('cor').value || '';
+      const tamanho = document.getElementById('tamanho').value || '';
+      const lote = document.getElementById('lote').value; // Agora o lote vem do campo de entrada
+
+      const EFToken = document.getElementById('efToken').value;
+      const IfNoneMatch = document.getElementById('ifNoneMatch').value || '';
+
+      // A URL agora inclui o código do lote corretamente
+      const url = `${host}/saldo/lote?EMPRESA=${empresa}&PRODUTO=${produto}&COR=${cor}&TAMANHO=${tamanho}&LOTE=${lote}`;
+      
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'EF-Token': EFToken,
+          'If-None-Match': IfNoneMatch
+        }
+      })
+      .then(handleResponse)  // Usando a função para tratar a resposta
+      .then(({ status, body }) => {
+        document.getElementById('result').textContent = `Status Code: ${status}\n\nBody:\n${JSON.stringify(body, null, 2)}`;
+      })
+      .catch(error => {
+        document.getElementById('result').textContent = 'Erro ao consultar API: ' + error.message;
+      });
+    }
+
+    function getSaldoLotes() {
+      const produto = document.getElementById('produto').value;
+      const empresa = document.getElementById('empresa').value || '';
+      const cor = document.getElementById('cor').value || '';
+      const tamanho = document.getElementById('tamanho').value || '';
+
+      const EFToken = document.getElementById('efToken').value;
+      const IfNoneMatch = document.getElementById('ifNoneMatch').value || '';
+
+      const url = `${host}/saldo/lotes?EMPRESA=${empresa}&PRODUTO=${produto}&COR=${cor}&TAMANHO=${tamanho}`;
+      
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'EF-Token': EFToken,
+          'If-None-Match': IfNoneMatch
+        }
+      })
+      .then(handleResponse)  // Usando a função para tratar a resposta
+      .then(({ status, body }) => {
+        document.getElementById('result').textContent = `Status Code: ${status}\n\nBody:\n${JSON.stringify(body, null, 2)}`;
+      })
+      .catch(error => {
+        document.getElementById('result').textContent = 'Erro ao consultar API: ' + error.message;
+      });
+    }
+  </script>
+</body>
+</html>
