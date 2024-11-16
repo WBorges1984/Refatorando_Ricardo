@@ -2,49 +2,62 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src=”scripts/script.js”></script>
   <link rel="stylesheet" type="text/css" href="styles/style.css" media="screen" />
-  <title>Consumo da API - SALDO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">  
+<title>Consumo da API - SALDO</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Consumo da API - SALDO</h1>
+  <section class="container">
+    <header>
+      <h1>Consumo da API - SALDO</h1>
+    </header>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Empresa:</span>
+      <input type="text" class="form-control" id="empresa" placeholder="Digite o código da empresa" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
 
-    <label for="empresa">Empresa:</label>
-    <input type="text" id="empresa" placeholder="Digite o código da empresa">
-    
-    <label for="produto">Produto:</label>
-    <input type="text" id="produto" placeholder="Digite o código do produto">
-    
-    <label for="cor">Cor:</label>
-    <input type="text" id="cor" placeholder="Digite a cor do produto (opcional)">
-    
-    <label for="tamanho">Tamanho:</label>
-    <input type="text" id="tamanho" placeholder="Digite o tamanho do produto (opcional)">
-    
-    <!-- Campos para EF-Token e If-None-Match -->
-    <label for="efToken">EF-Token:</label>
-    <input type="text" id="efToken" placeholder="Digite o seu EF-Token">
-    
-    <label for="ifNoneMatch">If-None-Match:</label>
-    <input type="text" id="ifNoneMatch" placeholder="Digite o valor de If-None-Match (opcional)">
-    
-    <!-- Campo para o código do lote -->
-    <label for="lote">Lote:</label>
-    <input type="text" id="lote" placeholder="Digite o código do lote">
-    
-    <!-- Botões para chamar os endpoints -->
-    <div class="button-container">
-      <button onclick="getSaldoProduto()">Consultar Saldo Produto</button>
-      <button onclick="getSaldoLote()">Consultar Saldo Lote</button>
-      <button onclick="getSaldoLotes()">Consultar Saldo Lotes</button>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Produto:</span>
+      <input type="text" class="form-control" id="produto" placeholder="Digite o código do produto" aria-label="Username" aria-describedby="basic-addon1">
+      <span class="input-group-text" id="basic-addon1">Cor:</span>
+      <input type="text" class="form-control" id="cor" placeholder="Digite a cor do produto (opcional)" aria-label="Username" aria-describedby="basic-addon1">
     </div>
     
-    <h3>Resultado da Requisição</h3>
-    <pre id="result"></pre>
-  </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Tamanho:</span>
+      <input type="text" class="form-control" id="tamanho" placeholder="Digite o tamanho do produto (opcional)" aria-label="Username" aria-describedby="basic-addon1">
+      <!-- Campo para o código do lote -->
+      <span class="input-group-text" id="basic-addon1">Lote:</span>
+      <input type="text" class="form-control" id="lote" placeholder="Digite o código do lote" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    
+    <div class="input-group mb-3">
+      <!-- Campos para EF-Token e If-None-Match -->
+      <span class="input-group-text" id="basic-addon1">EF-Token:</span>
+      <input type="text" class="form-control" id="efToken" placeholder="Digite o seu EF-Token" aria-label="Username" aria-describedby="basic-addon1">
+      <span class="input-group-text" id="basic-addon1">If-None-Match:</span>
+      <input type="text" class="form-control" id="ifNoneMatch" placeholder="Digite o valor de If-None-Match (opcional)" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    
 
+    <!-- Botões para chamar os endpoints -->
+    <div class="button-container">
+      <button class="btn btn-success" onclick="getSaldoProduto()" >Consultar Saldo Produto</button>
+      <button class="btn btn-primary" onclick="getSaldoLote()">Consultar Saldo Lote</button>
+      <button class="btn btn-info" onclick="getSaldoLotes()">Consultar Saldo Lotes</button>
+    </div>
+    
+    <h3 class="resultReq">Resultado da Requisição</h3>
+    <pre id="result"></pre>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="scripts/script.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>

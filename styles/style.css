@@ -1,10 +1,22 @@
-body {
-    font-family: Arial, sans-serif;
+body{ 
     padding: 20px;
     background-color: #f4f4f9;
   }
-  h1 {
-    color: #333;
+  h1,h2,h3, h4,p,pre,input, button, label,span{
+    font-family: 'Nunito' ,'Courier New', Courier, monospace ;
+  }
+
+  header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  header h1 {
+    align-items: center;
+    font-weight: 800;
+    font-size: 1.9em;
+    justify-content: center;
+    color: #333000;
   }
   .container {
     max-width: 800px;
@@ -20,24 +32,51 @@ body {
     box-sizing: border-box;
   }
   button {
-    background-color: #4CAF50;
-    color: white;
+    max-width: 300px;
     border: none;
     cursor: pointer;
   }
   button:hover {
     background-color: #45a049;
   }
-  pre {
+  #result {
     background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
   }
   .button-container {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
   .button-container button {
     width: 30%;
+  }
+
+  .resultReq{
+    font-weight: 500;
+    margin-top: 20px;
+  }
+
+  .titleResponse h4{
+    text-align: center;
+    color: #45a049;
+    
+  }
+
+  @media screen and (max-width: 780px) {
+    .input-group{
+      gap: 5px;
+    }
+
+    .input-group input{
+      width: 100vw;
+    }
+    
   }
