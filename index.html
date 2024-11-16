@@ -3,52 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src=”scripts/script.js”></script>
+  <link rel="stylesheet" type="text/css" href="styles/style.css" media="screen" />
   <title>Consumo da API - SALDO</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f4f4f9;
-    }
-    h1 {
-      color: #333;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    input, button {
-      padding: 10px;
-      margin: 10px 0;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    pre {
-      background-color: #f0f0f0;
-      padding: 10px;
-      border-radius: 5px;
-    }
-    .button-container {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .button-container button {
-      width: 30%;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
@@ -88,98 +45,6 @@
     <pre id="result"></pre>
   </div>
 
-  <script>
-    const host = 'http://localhost:5087/v5'; // Substitua pelo host da sua API
-
-    function handleResponse(response) {
-      // Lê o status e o body da resposta
-      return response.json().then(data => {
-        return { status: response.status, body: data };
-      });
-    }
-
-    function getSaldoProduto() {
-      const produto = document.getElementById('produto').value;
-      const empresa = document.getElementById('empresa').value || '';
-      const cor = document.getElementById('cor').value || '';
-      const tamanho = document.getElementById('tamanho').value || '';
-
-      const EFToken = document.getElementById('efToken').value;
-      const IfNoneMatch = document.getElementById('ifNoneMatch').value || '';
-
-      const url = `${host}/saldo?EMPRESA=${empresa}&PRODUTO=${produto}&COR=${cor}&TAMANHO=${tamanho}`;
-      
-      fetch(url, {
-        method: 'GET',
-        headers: {
-          'EF-Token': EFToken,
-          'If-None-Match': IfNoneMatch
-        }
-      })
-      .then(handleResponse)  // Usando a função para tratar a resposta
-      .then(({ status, body }) => {
-        document.getElementById('result').textContent = `Status Code: ${status}\n\nBody:\n${JSON.stringify(body, null, 2)}`;
-      })
-      .catch(error => {
-        document.getElementById('result').textContent = 'Erro ao consultar API: ' + error.message;
-      });
-    }
-
-    function getSaldoLote() {
-      const produto = document.getElementById('produto').value;
-      const empresa = document.getElementById('empresa').value || '';
-      const cor = document.getElementById('cor').value || '';
-      const tamanho = document.getElementById('tamanho').value || '';
-      const lote = document.getElementById('lote').value; // Agora o lote vem do campo de entrada
-
-      const EFToken = document.getElementById('efToken').value;
-      const IfNoneMatch = document.getElementById('ifNoneMatch').value || '';
-
-      // A URL agora inclui o código do lote corretamente
-      const url = `${host}/saldo/lote?EMPRESA=${empresa}&PRODUTO=${produto}&COR=${cor}&TAMANHO=${tamanho}&LOTE=${lote}`;
-      
-      fetch(url, {
-        method: 'GET',
-        headers: {
-          'EF-Token': EFToken,
-          'If-None-Match': IfNoneMatch
-        }
-      })
-      .then(handleResponse)  // Usando a função para tratar a resposta
-      .then(({ status, body }) => {
-        document.getElementById('result').textContent = `Status Code: ${status}\n\nBody:\n${JSON.stringify(body, null, 2)}`;
-      })
-      .catch(error => {
-        document.getElementById('result').textContent = 'Erro ao consultar API: ' + error.message;
-      });
-    }
-
-    function getSaldoLotes() {
-      const produto = document.getElementById('produto').value;
-      const empresa = document.getElementById('empresa').value || '';
-      const cor = document.getElementById('cor').value || '';
-      const tamanho = document.getElementById('tamanho').value || '';
-
-      const EFToken = document.getElementById('efToken').value;
-      const IfNoneMatch = document.getElementById('ifNoneMatch').value || '';
-
-      const url = `${host}/saldo/lotes?EMPRESA=${empresa}&PRODUTO=${produto}&COR=${cor}&TAMANHO=${tamanho}`;
-      
-      fetch(url, {
-        method: 'GET',
-        headers: {
-          'EF-Token': EFToken,
-          'If-None-Match': IfNoneMatch
-        }
-      })
-      .then(handleResponse)  // Usando a função para tratar a resposta
-      .then(({ status, body }) => {
-        document.getElementById('result').textContent = `Status Code: ${status}\n\nBody:\n${JSON.stringify(body, null, 2)}`;
-      })
-      .catch(error => {
-        document.getElementById('result').textContent = 'Erro ao consultar API: ' + error.message;
-      });
-    }
-  </script>
+  <script src="scripts/script.js" defer></script>
 </body>
 </html>
