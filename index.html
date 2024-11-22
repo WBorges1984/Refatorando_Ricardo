@@ -16,52 +16,50 @@
     <header>
       <h1>Consumo da API - SALDO!</h1>
     </header>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">Empresa:</span>
-      <input type="text" class="form-control" id="empresa" placeholder="Digite o código da empresa" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-
-    <div class="input-group mb-3 mobile">
-      <div class="mobile">
-        <span class="input-group-text" id="basic-addon1">Produto:</span>
-        <input type="text" class="form-control" id="produto" placeholder="Digite o código do produto" aria-label="Username" aria-describedby="basic-addon1">
-      </div>
-      <div class="mobile">
-        <span class="input-group-text" id="basic-addon1">Cor:</span>
-        <input type="text" class="form-control" id="cor" placeholder="Digite a cor do produto (opcional)" aria-label="Username" aria-describedby="basic-addon1">
-      </div>
-    </div>
     
-    <div class="input-group mb-3 mobile">
-      <div class="mobile">
-        <span class="input-group-text" id="basic-addon1">Tamanho:</span>
-        <input type="text" class="form-control" id="tamanho" placeholder="Digite o tamanho do produto (opcional)" aria-label="Username" aria-describedby="basic-addon1">
+    <div class="input-group">
+      <div class="input-box">
+          <label for="empresa">Empresa:</label>
+          <input id="empresa" type="text" name="empresa" placeholder="Digite o código da empresa">
       </div>
-      <div class="mobile">
-        
-        <span class="input-group-text" id="basic-addon1">Lote:</span>
-        <input type="text" class="form-control" id="lote" placeholder="Digite o código do lote" aria-label="Username" aria-describedby="basic-addon1">
-      </div>
-    </div>
-    
-    <div class="input-group mb-3 mobile">
-      <div class="mobile">
 
-        <span class="input-group-text" id="basic-addon1">EF-Token:</span>
-        <input type="text" class="form-control" id="efToken" placeholder="Digite o seu EF-Token" aria-label="Username" aria-describedby="basic-addon1">
+      <div class="input-box">
+          <label for="c">EF-Token*</label>
+          <input id="eftoken" type="text" name="eftoken" placeholder="Digite seu EF-Token" required>
       </div>
-      <div class="mobile">
-        <span class="input-group-text" id="basic-addon1">If-None-Match:</span>
-        <input type="text" class="form-control" id="ifNoneMatch" placeholder="Digite o valor de If-None-Match (opcional)" aria-label="Username" aria-describedby="basic-addon1">
+      <div class="input-box">
+          <label for="ifNoneMatch">If-None-Match:</label>
+          <input id="ifNoneMatch" type="text" name="ifNoneMatch" placeholder="Digite o valor do If-None-Match">
       </div>
-    </div>
-    
 
-    <div class="button-container">
-      <button class="btn btn-success"  id="saldoProdutoBtn">Consultar Saldo Produto</button>
-      <button class="btn btn-primary" id="saldoLoteBtn">Consultar Saldo Lote</button>
-      <button class="btn btn-info" id="saldoLotesBtn">Consultar Saldo Lotes</button>
-    </div>
+      <div class="input-box">
+          <label for="produto">Produto*:</label>
+          <input id="produto" type="text" name="produto" placeholder="Digite o código do produto" required>
+      </div>
+
+      <div class="input-box">
+          <label for="cor">Cor</label>
+          <input id="cor" type="text" name="cor" placeholder="Digite a cor">
+      </div>
+
+
+      <div class="input-box">
+          <label for="tamanho">Tamanho:</label>
+          <input id="tamanho" type="text" name="tamanho" placeholder="Digite o tamanho">
+      </div>
+
+
+      <div class="input-box">
+          <label for="lote">Lote:</label>
+          <input id="lote" type="text" name="lote" placeholder="Digite o lote">
+      </div>
+
+  </div>
+  <div class="button-container">
+    <button class="btn btn-success"  id="saldoProdutoBtn">Consultar Saldo Produto</button>
+    <button class="btn btn-primary" id="saldoLoteBtn">Consultar Saldo Lote</button>
+    <button class="btn btn-info" id="saldoLotesBtn">Consultar Saldo Lotes</button>
+  </div>
     
     <h3 class="resultReq">Resultado da Requisição</h3>
     <pre id="result"></pre>

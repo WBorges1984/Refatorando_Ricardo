@@ -20,7 +20,7 @@ export function consultarSaldo(endpoint, params) {
         resultElement.innerHTML = `
           <h4 class='titleResponse'>Consulta Realizada com Sucesso</h4>
           <p><strong>Status Code:</strong> ${status}</p>
-          <pre>${JSON.stringify(body, null, 2)}</pre>
+          <pre>${JSON.stringify(body, null, 0)}</pre>
         `;
       } else {
         resultElement.innerHTML = `

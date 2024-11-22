@@ -5,7 +5,7 @@ export function getFormData() {
       cor: document.getElementById('cor').value || '',
       tamanho: document.getElementById('tamanho').value || '',
       lote: document.getElementById('lote').value || '',
-      EFToken: document.getElementById('efToken').value,
+      EFToken: document.getElementById('eftoken').value,
       IfNoneMatch: document.getElementById('ifNoneMatch').value || '',
     };
   }
