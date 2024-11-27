@@ -103,6 +103,38 @@ header h1{
 .titleResponse h4{
   text-align: center;
 }
+
+
+.modalResult {
+  display: none; /* Esconde o modal por padrão */
+  position: fixed; /* Fixa no centro da tela */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centraliza o modal */
+  width: 50%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+}
+
+.modalResult .resultReq {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modalOverlay {
+  display: none; /* Esconde o fundo do modal por padrão */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  z-index: 999; /* Coloca atrás do modal */
+}
 #result{
   display: flex;
   flex-direction: column;
@@ -111,17 +143,21 @@ header h1{
   background-color: antiquewhite;
   border-radius: 5px;
 }
-#result h4{
+.modalResult #result h4{
   color: #fff;
   text-shadow: 2px 2px 4px #000000;
   text-align: center;
 }
 
-#result pre{
+.modalResult #result pre{
   font-weight: 900;
   font-size: 0.8rem;
 }
 
+.dadosItem{
+  display: flex;
+  justify-content: space-around;
+}
 
 @media screen and (max-width: 1330px) {
   #result{
