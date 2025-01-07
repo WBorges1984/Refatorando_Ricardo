@@ -31,7 +31,7 @@ export function consultarSaldo(endpoint, params) {
             </div>
             <div class='reservaFechamento'>
               <h6>Reserva: ${data.reserva}</h6>
-              <h6>Saldo Fechamento: ${data.saldoFechamento}</h6>
+              <h6>Saldo Fechamento: ${data.saldo_fechamento}</h6>
             </div>          
           </div>
           
