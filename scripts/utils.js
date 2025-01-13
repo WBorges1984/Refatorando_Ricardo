@@ -17,11 +17,11 @@ export function getFormData() {
   export function validarCampos({ produto, EFToken }) {
     if (!produto) {
       alert('O código do produto é obrigatório.');
-      return false;
+      return;
     }
     if (!EFToken) {
       alert('O EFToken é obrigatório.');
-      return false;
+      return;
     }
     return true;
   }
