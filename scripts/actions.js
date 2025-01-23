@@ -1,5 +1,5 @@
 import { getFormData, validarCampos } from './utils.js';
-import { consultarSaldo, consultarSaldoLote } from './api.js';
+import { consultarSaldo, consultarSaldoLote, consultarSaldoLotes } from './api.js';
 
 export function getSaldoProduto() {
   const formulario = getFormData();
@@ -16,9 +16,9 @@ export function getSaldoLote() {
 
   const { produto, empresa, cor, tamanho, lote, ...rest } = formulario;
   // const endpoint = `/saldo/lote?EMPRESA=${empresa}&PRODUTO=${produto}&COR=${cor}&TAMANHO=${tamanho}&LOTE=${lote}`;
-  const endpoint = `/estoque/lote?EMPRESA=${empresa}&PRODUTO=${produto}&COR=${cor}&TAMANHO=${tamanho}&LOTE=${lote}`;
+  const endpoint = `/saldo/lote?EMPRESA=${empresa}&PRODUTO=${produto}&COR=${cor}&TAMANHO=${tamanho}&LOTE=${lote}`;
   
-  consultarSaldo(endpoint, rest);
+  consultarSaldoLote(endpoint, rest);
 }
 
 export function getSaldoLotes() {
@@ -27,7 +27,7 @@ export function getSaldoLotes() {
   if (!validarCampos(formulario)) return;
 
   const { produto, empresa, cor, tamanho, ...rest } = formulario;
-  const endpoint = `/estoque/lote/todos?Empresa=${empresa}&Produto=${produto}&Cor=${cor}&Tamanho=${tamanho}`;
+  const endpoint = `/saldo/lotes?Empresa=${empresa}&Produto=${produto}&Cor=${cor}&Tamanho=${tamanho}`;
   // /v1/estoque/lote/todos?Empresa=&Produto=000161&Cor&Tamanho
-  consultarSaldoLote(endpoint, rest);
+  consultarSaldoLotes(endpoint, rest);
 }
