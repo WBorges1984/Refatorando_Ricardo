@@ -131,7 +131,7 @@ export function consultarSaldoLotes(endpoint, params) {
         return;
       }
 
-      // Criação do HTML dinâmico sem JSX
+     
       const htmlContent = `
         <h4 class='titleResponse'>Consulta Realizada com Sucesso</h4>
         <h5><strong>Status Code:</strong> ${status}</h5>
